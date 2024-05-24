@@ -10,11 +10,17 @@ import BottomTab from './app/navigation/BottomTab';
 import { UserLocationContext } from './app/context/UserLocationContext';
 import { UserReversedGeoCode } from './app/context/UserReversedGeoCode';
 import FoodNavigator from './app/navigation/FoodNavigator';
+import RestaurantPage from './app/navigation/RestaurantPage';
+import Restaurant from './app/screens/restaurant/Restaurant';
+import AddRating from './app/screens/AddRating'
+import { RestaurantContext } from './app/context/RestaurantContext';
+
 const Stack = createNativeStackNavigator();
 
 export default function App() {
   const [location, setLocation] = useState(null);
   const [address, setAddress] = useState(null);
+  const [restaurantObj, setRestaurantObj] = useState(null);
   const [error, setErrorMsg] = useState(null);
 
 
@@ -60,6 +66,7 @@ export default function App() {
   return (
     <UserLocationContext.Provider value ={{location, setLocation}}>
      <UserReversedGeoCode.Provider value={{ address, setAddress }}>
+        <RestaurantContext .Provider value={{ restaurantObj, setRestaurantObj }}>
       <NavigationContainer>
         <Stack.Navigator>
           <Stack.Screen
@@ -73,8 +80,28 @@ export default function App() {
               component={FoodNavigator}
               options={{ headerShown: false }}
             /> 
+
+            <Stack.Screen
+              name='restaurant-page'
+              component={RestaurantPage}
+              options={{ headerShown: false }}
+            />
+
+            <Stack.Screen
+              name='restaurant'
+              component={Restaurant}
+              options={{ headerShown: false }}
+            />
+
+            <Stack.Screen
+              name='rating'
+              component={AddRating}
+              options={{ headerShown: false }}
+            />
+            
         </Stack.Navigator>
       </NavigationContainer>
+        </RestaurantContext.Provider>
      </UserReversedGeoCode.Provider>
     </UserLocationContext.Provider>
   
