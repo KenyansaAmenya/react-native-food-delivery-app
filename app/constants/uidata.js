@@ -503,8 +503,8 @@ const cart =  [
 
 const profile = {
     "_id": "6537a4448cd1bd140ebddcee",
-    "username": "Dbestech",
-    "email": "db@king.com",
+    "username": "Felix",
+    "email": "kenyansafelix@gmail.com",
     "uid": "4NmOkCbvu7ToaBS9ZR1UVpv0G1g2",
     "address": [],
     "userType": "Vendor",

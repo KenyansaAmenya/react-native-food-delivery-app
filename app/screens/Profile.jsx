@@ -10,7 +10,10 @@ import NetworkImage from "../components/NetworkImage";
 import ProfileTile from "../components/ProfileTile";
 import RegistrationTile from "../components/RegistrationTile";
 
+
+
 const Profile = () => {
+  const { login, setLogin } = useContext(LoginContext)
   const [user, setUser] = useState(null)
 
   // const { user, isProfileLoading, error, refetch } = fetchProfile();
@@ -48,17 +51,17 @@ const Profile = () => {
               }}
             >
               <NetworkImage
-                source={user === null ? profile : user.profile}
+                data={user === null ? profile : user.profile}
                 width={45}
                 height={45}
                 radius={99}
               />
               <View style={{ marginLeft: 10, marginTop: 3 }}>
                 <Text style={styles.text}>
-                  {user === null ? "username" : user.username}
+                  {user === null ? "Felix" : user.username}
                 </Text>
                 <Text style={styles.email}>
-                  {user === null ? "email" : user.email}
+                  {user === null ? "kenyansafelix@gmail.com" : user.email}
                 </Text>
               </View>
             </View>

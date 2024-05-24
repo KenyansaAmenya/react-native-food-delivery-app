@@ -15,6 +15,9 @@ import Restaurant from './app/screens/restaurant/Restaurant';
 import AddRating from './app/screens/AddRating'
 import { RestaurantContext } from './app/context/RestaurantContext';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { LoginContext } from './app/context/LoginContext';
+import SignUp from './app/screens/SignUp';
+import { CartCountContext } from './app/context/CartCountContext';
 
 const Stack = createNativeStackNavigator();
 
@@ -22,6 +25,7 @@ export default function App() {
   const [location, setLocation] = useState(null);
   const [login, setLogin] = useState(false)
   const [address, setAddress] = useState(null);
+  const [cartCount, setCartCount] = useState(0);
   const [restaurantObj, setRestaurantObj] = useState(null);
   const [error, setErrorMsg] = useState(null);
 
@@ -74,7 +78,6 @@ export default function App() {
     } else {
       setLogin(false)
     }
-    console.log(login);
   }
   
 
@@ -82,6 +85,9 @@ export default function App() {
     <UserLocationContext.Provider value ={{location, setLocation}}>
      <UserReversedGeoCode.Provider value={{ address, setAddress }}>
         <RestaurantContext.Provider value={{ restaurantObj, setRestaurantObj }}>
+          <LoginContext.Provider value={{ login, setLogin }}>
+            <CartCountContext.Provider value={{ login, setLogin }}>
+
       <NavigationContainer>
         <Stack.Navigator>
           <Stack.Screen
@@ -108,6 +114,12 @@ export default function App() {
               options={{ headerShown: false }}
             />
 
+                <Stack.Screen
+                  name='signUp'
+                  component={SignUp}
+                  options={{ headerShown: false }}
+                />
+
             <Stack.Screen
               name='rating'
               component={AddRating}
@@ -116,6 +128,8 @@ export default function App() {
             
         </Stack.Navigator>
       </NavigationContainer>
+            </CartCountContext.Provider>
+          </LoginContext.Provider>
         </RestaurantContext.Provider>
      </UserReversedGeoCode.Provider>
     </UserLocationContext.Provider>

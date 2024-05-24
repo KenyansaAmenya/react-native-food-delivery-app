@@ -5,7 +5,6 @@ import NetworkImage from './NetworkImage'
 import { RatingInput } from 'react-native-stock-star-rating'
 
 const FoodTile = ({item, onPress, showDetails}) => {
-    console.log(item);
   return (
     <TouchableOpacity style={styles.wrapper} onPress={showDetails}>
        <View style={{backgroundColor: COLORS.lightWhite, borderRadius: 12}}>
@@ -52,12 +51,14 @@ export default FoodTile
 
 const styles = StyleSheet.create({
     wrapper:{
-        backgroundColor: COLORS.primary1,
+        left: 5,
+        backgroundColor: COLORS.lightWhite,
         borderRadius: 12,
         padding: 12,
         marginBottom: 15,
         marginRight: 10,
-        paddingRight: 7
+        paddingRight: 7,
+        ...SHADOWS.small
     },
     title:{
         fontSize: 16,
