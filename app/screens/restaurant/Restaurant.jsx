@@ -75,7 +75,6 @@ const Restaurant = ({navigation}) => {
                     <RatingInput
                     rating={Number(item.rating)}
                     size={22}
-                    // color={COLORS.lightWhite}
                     />
 
                     <TouchableOpacity style={styles.ratingbtn} onPress={() => navigation.navigate('rating')}>
