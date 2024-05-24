@@ -14,11 +14,13 @@ import RestaurantPage from './app/navigation/RestaurantPage';
 import Restaurant from './app/screens/restaurant/Restaurant';
 import AddRating from './app/screens/AddRating'
 import { RestaurantContext } from './app/context/RestaurantContext';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const Stack = createNativeStackNavigator();
 
 export default function App() {
   const [location, setLocation] = useState(null);
+  const [login, setLogin] = useState(false)
   const [address, setAddress] = useState(null);
   const [restaurantObj, setRestaurantObj] = useState(null);
   const [error, setErrorMsg] = useState(null);
@@ -55,6 +57,7 @@ export default function App() {
 
     let location = await Location.getCurrentPositionAsync({});
     setLocation(location)
+    loginStatus()
     })();
   }, [])
 
@@ -63,10 +66,22 @@ export default function App() {
     return;
   }
 
+  const loginStatus = async () => {
+    const userToken = await AsyncStorage.getItem('token')
+
+    if (userToken !== null) {
+      setLogin(true)
+    } else {
+      setLogin(false)
+    }
+    console.log(login);
+  }
+  
+
   return (
     <UserLocationContext.Provider value ={{location, setLocation}}>
      <UserReversedGeoCode.Provider value={{ address, setAddress }}>
-        <RestaurantContext .Provider value={{ restaurantObj, setRestaurantObj }}>
+        <RestaurantContext.Provider value={{ restaurantObj, setRestaurantObj }}>
       <NavigationContainer>
         <Stack.Navigator>
           <Stack.Screen
