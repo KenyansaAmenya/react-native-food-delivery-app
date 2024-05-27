@@ -1,6 +1,6 @@
 import axios from "axios"
 
-const apiKey = "AIzaSyAQ8vdzDbpE_ulFTTe4WDU4vepZ_JRRtwI"; // Replace with your API Key 
+const apiKey = ""; // Replace with your API Key 
 const calculateDistanceAndTime = async (startLat, startLng, destinationLat, destinationLng, mode = 'bicycling') => {
   
     const baseUrl = "https://maps.googleapis.com/maps/api/distancematrix/json?";
